@@ -2,13 +2,16 @@ package br.com.ferraz.gerenciadordecursos.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Curso {
 
 	private String nome;
 	private String instrutor;
 	private List<Aula> aulas = new ArrayList<Aula>();
+	private Set<Aluno> alunos = new HashSet<>();
 	
 	
 	public Curso(String nome, String instrutor) {
@@ -41,14 +44,27 @@ public class Curso {
 		this.aulas.add(aula);
 	}
 	
+	public void matricula(Aluno aluno) {
+		this.alunos.add(aluno);
+	}
+	
 	public Integer getTempoTotal() {
 		return aulas.stream().mapToInt(Aula::getTempo).sum();
+	}
+	
+	public Set<Aluno> getAlunos() {
+		return Collections.unmodifiableSet(alunos);
 	}
 
 
 	@Override
 	public String toString() {
 		return "Curso [nome=" + nome + ", instrutor=" + instrutor + ", aulas=" + aulas + "]";
+	}
+
+
+	public boolean estaMatriculado(Aluno aluno) {
+		return alunos.contains(aluno);
 	}
 	
 }
