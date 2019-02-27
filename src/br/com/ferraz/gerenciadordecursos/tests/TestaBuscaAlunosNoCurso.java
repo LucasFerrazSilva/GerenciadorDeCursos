@@ -4,7 +4,7 @@ import br.com.ferraz.gerenciadordecursos.model.Aluno;
 import br.com.ferraz.gerenciadordecursos.model.Aula;
 import br.com.ferraz.gerenciadordecursos.model.Curso;
 
-public class TestaCursoComAluno {
+public class TestaBuscaAlunosNoCurso {
 
 	public static void main(String[] args) {
 		Curso curso = new Curso("Curso de Java", "Silveira");
@@ -14,19 +14,12 @@ public class TestaCursoComAluno {
 
 		Aluno a1 = new Aluno("Lucas", 1);
 		Aluno a2 = new Aluno("Carina", 2);
-		Aluno a12 = new Aluno("Lucas", 1);
 		
 		curso.matricula(a1);
 		curso.matricula(a2);
 		
-		curso.getAlunos().forEach(System.out::println);
-
-		System.out.println(curso.estaMatriculado(a1));
-		System.out.println(curso.estaMatriculado(a12));
 		
-		//
-		
-		
+		Aluno aluno = curso.buscaMatriculado(1);
 	}
 	
 }

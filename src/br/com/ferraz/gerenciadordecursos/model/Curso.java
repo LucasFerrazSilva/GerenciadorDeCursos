@@ -2,8 +2,10 @@ package br.com.ferraz.gerenciadordecursos.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Curso {
@@ -11,7 +13,8 @@ public class Curso {
 	private String nome;
 	private String instrutor;
 	private List<Aula> aulas = new ArrayList<Aula>();
-	private Set<Aluno> alunos = new HashSet<>();
+	private Set<Aluno> alunos = new LinkedHashSet<>();
+	private Map<Integer, Aluno> mapaAlunos = new HashMap<>();
 	
 	
 	public Curso(String nome, String instrutor) {
@@ -46,6 +49,7 @@ public class Curso {
 	
 	public void matricula(Aluno aluno) {
 		this.alunos.add(aluno);
+		this.mapaAlunos.put(aluno.getNumeroMatricula(), aluno);
 	}
 	
 	public Integer getTempoTotal() {
@@ -65,6 +69,10 @@ public class Curso {
 
 	public boolean estaMatriculado(Aluno aluno) {
 		return alunos.contains(aluno);
+	}
+
+	public Aluno buscaMatriculado(int numeroMatricula) {
+		return mapaAlunos.get(numeroMatricula);
 	}
 	
 }

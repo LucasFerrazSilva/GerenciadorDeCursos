@@ -1,10 +1,12 @@
 package br.com.ferraz.gerenciadordecursos.tests;
 
+import java.util.Iterator;
+
 import br.com.ferraz.gerenciadordecursos.model.Aluno;
 import br.com.ferraz.gerenciadordecursos.model.Aula;
 import br.com.ferraz.gerenciadordecursos.model.Curso;
 
-public class TestaCursoComAluno {
+public class TestaIterator {
 
 	public static void main(String[] args) {
 		Curso curso = new Curso("Curso de Java", "Silveira");
@@ -14,19 +16,16 @@ public class TestaCursoComAluno {
 
 		Aluno a1 = new Aluno("Lucas", 1);
 		Aluno a2 = new Aluno("Carina", 2);
-		Aluno a12 = new Aluno("Lucas", 1);
 		
 		curso.matricula(a1);
 		curso.matricula(a2);
 		
-		curso.getAlunos().forEach(System.out::println);
-
-		System.out.println(curso.estaMatriculado(a1));
-		System.out.println(curso.estaMatriculado(a12));
 		
-		//
+		Iterator<Aluno> alunos = curso.getAlunos().iterator();
 		
-		
+		while(alunos.hasNext()) {
+			System.out.println(alunos.next());
+		}
 	}
 	
 }
